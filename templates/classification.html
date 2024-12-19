@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Классификация года выхода игры{% endblock %}
+
+{% block content %}
+<h1>Классификация года выхода игры</h1>
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button type="submit">Отправить</button>
+</form>
+
+{% if class_model %}
+<h2>Результат:</h2>
+<p>Предсказанный год: {{ class_model }}</p>
+{% endif %}
+
+<h2>Метрики:</h2>
+<ul>
+    <li>Accuracy: 0.8750</li>
+    <li>MSE: 0.2500</li>
+    <li>MAPE: 0.1250</li>
+</ul>
+{% endblock %}

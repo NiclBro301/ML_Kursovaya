@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Документация API{% endblock %}
+
+{% block content %}
+<h1>Документация API</h1>
+<h2>POST /api/detect</h2>
+<p>Отправьте изображение для детектирования мобов в Майнкрафт.</p>
+
+<h3>Пример запроса на Python:</h3>
+<pre>
+import requests
+
+# URL API
+url = 'http://127.0.0.1:5000/api/detect'
+
+# Путь к изображению
+image_path = 'path/to/image.jpg'
+
+# Отправка запроса
+with open(image_path, 'rb') as file:
+    response = requests.post(url, files={'file': file})
+
+# Вывод ответа
+print(response.json())
+</pre>
+
+<p><strong>Описание:</strong></p>
+
+<p><code>url</code>: URL маршрута API.</p>
+<p><code>image_path</code>: Путь к изображению, которое вы хотите отправить.</p>
+<p><code>files={'file': file}</code>: Отправляет файл изображения в запросе.</p>
+<p><code>response.json()</code>: Возвращает ответ в формате JSON.</p>
+
+<h3>Пример ответа:</h3>
+<pre>
+{
+    "detections": [
+        {"class_id": 0, "class_name": "bee", "confidence": 0.92, "bbox": [100, 150, 200, 300]},
+        {"class_id": 1, "class_name": "chicken", "confidence": 0.88, "bbox": [300, 400, 400, 500]}
+    ]
+}
+</pre>
+
+<p><strong>Описание полей ответа:</strong></p>
+
+<p><code>detections</code>: Список обнаруженных объектов.</p>
+<p><code>class_id</code>: Идентификатор класса.</p>
+<p><code>class_name</code>: Название класса.</p>
+<p><code>confidence</code>: Уверенность модели в предсказании.</p>
+<p><code>bbox</code>: Координаты ограничивающей рамки (x1, y1, x2, y2).</p>
+
+
+{% endblock %}

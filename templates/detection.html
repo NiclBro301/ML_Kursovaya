@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Детектирование мобов{% endblock %}
+
+{% block content %}
+<h1>Детектирование мобов в Майнкрафт</h1>
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button type="submit">Отправить</button>
+</form>
+
+{% if image %}
+<h2>Результат:</h2>
+<img src="{{ url_for('static', filename='images/processed_images/' + image) }}" alt="Processed Image" style="max-width: 100%;">
+<ul>
+    {% for detection in detections %}
+    <li>{{ detection.class_name }} (Уверенность: {{ detection.confidence }})</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h2>Метрики:</h2>
+<h2>Result:</h2>
+<img src="{{ url_for('static', filename='images/result.png') }}" alt="Result" style="max-width: 100%;">
+<h2>Confusion Matrix:</h2>
+<img src="{{ url_for('static', filename='images/confusion_matrix.png') }}" alt="Confusion Matrix" style="max-width: 100%;">
+<h2>F1 Curve:</h2>
+<img src="{{ url_for('static', filename='images/F1_curve.png') }}" alt="F1 Curve" style="max-width: 100%;">
+
+{% endblock %}

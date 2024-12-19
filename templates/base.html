@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AI Models{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('classification') }}">Классификация года</a></li>
+                    <li><a href="{{ url_for('detection') }}">Детектирование мобов</a></li>
+                    <li><a href="{{ url_for('api_docs') }}">Документация API</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="container">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2024 Гришин Никита ИВТ-301</p>
+        </footer>
+    </div>
+</body>
+</html>
